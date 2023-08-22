@@ -6,7 +6,7 @@ interface FooterProps {
 }
 
 const FooterDesktop: StorefrontFunctionComponent<FooterProps> = (props) => {
-    console.log(props)
+    console.log(props, "llllllllll")
     const footerSectionItems = [
         {
             title: "Shop",
@@ -60,7 +60,7 @@ FooterDesktop.schema = {
             default: [
                 {
                     text: 'Our Artists',
-                    url: '#'
+                    url: '# amit'
                 },
                 {
                     text: 'Jewelry',
