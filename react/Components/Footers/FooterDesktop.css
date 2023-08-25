@@ -1,4 +1,30 @@
 .title {
     display: flex !important;
-    justify-content: space-around !important;
+    justify-content: space-between !important;
 }
+
+.arrow {
+    position: relative !important;
+    top: -29px !important;
+    left: 260px !important;
+}
+
+.heading{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+input[type="email"]::-webkit-input-placeholder{
+    color: black;
+    font-weight: 400;
+    padding-left: 10px;
+  }
+
+  .email{
+    background-color: white;
+    padding: 10px;
+    border-radius: 25px;
+    outline: none;
+    width: 300px;
+
+  }

@@ -4,5 +4,8 @@
   },
   "footer-desktop": {
     "component": "FooterDesktop"
+  },
+  "footer-mobile": {
+    "component": "FooterMobile"
   }
 }
