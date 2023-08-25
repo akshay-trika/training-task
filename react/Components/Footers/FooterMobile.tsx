@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import styles from "./FooterMobile.css";
 import { Icon } from "vtex.store-icons";
 // import { FaArrowRight } from "react-icons/fa";
-import style from "./FooterDesktop.css";
+
 
 interface FooterProps {}
 
 const FooterMobile: StorefrontFunctionComponent<FooterProps> = (props: any) => {
-  console.log(props, "------------");
 
   const footerSectionItems = [
     {
@@ -60,7 +58,7 @@ const FooterMobile: StorefrontFunctionComponent<FooterProps> = (props: any) => {
                     {ele.items.map((menu: any, index: number) => (
                       <React.Fragment key={index}>
                         <li className="mt2">
-                          <a href={menu.url} className={`${styles.linkText}`}>
+                          <a href={menu.url} className="black-90 no-underline">
                             {menu.text}
                           </a>
                         </li>
@@ -79,19 +77,21 @@ const FooterMobile: StorefrontFunctionComponent<FooterProps> = (props: any) => {
           </p>
           <input
             type="email"
-            className={`${style.email}`}
+            className="ba bw1 b--black-20 bg-white pa2 br-pill outline-0 w-300"
             placeholder="Enter your email address"
           />
-          <span className={`${style.arrow}`}>
+          <div className="relative">
             {" "}
-            <svg
+         <div className="absolute  top--2 right-1 pt3">
+         <svg
               xmlns="http://www.w3.org/2000/svg"
               height="1em"
               viewBox="0 0 448 512"
             >
               <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path>
             </svg>
-          </span>
+         </div>
+          </div>
         </div>
         <div className=" w-100">
           <h4 className=" t-heading-4-l ma0">Connect with us</h4>

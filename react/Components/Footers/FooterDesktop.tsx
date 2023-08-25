@@ -1,5 +1,4 @@
 import React from 'react'
-import style from "./FooterDesktop.css"
 
 interface FooterProps {
 
@@ -17,7 +16,7 @@ const FooterDesktop: StorefrontFunctionComponent<FooterProps> = (props: any) => 
     console.log(footerSectionItems);
 
     return (<div>
-        <div className={`${style.title} ph7 pt4`}>
+        <div className={`flex justify-between ph7 pt4`}>
             {
                 footerSectionItems.map(ele => (
                     <div key={ele.title} >
@@ -33,16 +32,18 @@ const FooterDesktop: StorefrontFunctionComponent<FooterProps> = (props: any) => 
 
             }
         </div>
-        <div className={`${style.title} ph7 pt3`}>
+        <div className={`flex justify-between ph7 pt3`}>
             <div className="flex flex-column">
                 <p className='b '>Sign up to receive the project antelope newsletter</p>
-                <input type='email' className={`${style.email}`} placeholder='Enter your email address' />
-                <span className={`${style.arrow}`}> <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                <input type='email' className="ba bw1 b--black-20 bg-white pa2 br-pill outline-0 w-300 placeholder-black fw4 pl1" placeholder='Enter your email address' />
+               <div className="relative">
+               <div className="absolute pt3 top--2 right-1"> <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
                     <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg>
-                </span>
+                </div>
+               </div>
             </div>
             <div className="">
-                <p className={`${style.heading}b flex justify-end`}>Connect with us</p>
+                <p className={`f4 fw6 b flex justify-end`}>Connect with us</p>
                 <div className=' flex justify-end'>
                     <div className='ph3'>
                         <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 448 512">
@@ -53,7 +54,7 @@ const FooterDesktop: StorefrontFunctionComponent<FooterProps> = (props: any) => 
                             <path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z" /></svg>
                     </div>
                 </div>
-                <div className={`${style.heading}b flex justify-end`}>
+                <div className='f4 fw6 b flex justify-end'>
                     <p className='mh2'>Terms of use</p>
                     <p className='mh2'> Privacy policy</p>
                     <p className='mh2'>All rights reserved </p>
