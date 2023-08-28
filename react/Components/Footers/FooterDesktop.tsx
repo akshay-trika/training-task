@@ -13,7 +13,6 @@ const FooterDesktop: StorefrontFunctionComponent<FooterProps> = (props: any) => 
         { title: "About", items: props.aboutLinks ? props.aboutLinks : [] },
         { title: "Help", items: props.helpLinks ? props.helpLinks : [] }
     ]
-    console.log(footerSectionItems);
 
     return (<div>
         <div className={`flex justify-between ph7 pt4`}>
