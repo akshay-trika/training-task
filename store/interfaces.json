@@ -10,5 +10,8 @@
   },
   "megamenu-desktop":{
     "component" : "MegaMenuDesktop"
+  },
+  "megamenu-mobile":{
+    "component" : "MegaMenuMobile"
   }
 }
