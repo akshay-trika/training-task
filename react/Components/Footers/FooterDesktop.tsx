@@ -84,32 +84,6 @@ FooterDesktop.schema = {
                     }
                 }
             },
-            default: [
-                {
-                    text: 'Our Artists',
-                    url: '# amit'
-                },
-                {
-                    text: 'Jewelry',
-                    url: '#'
-                },
-                {
-                    text: 'Fashion',
-                    url: '#'
-                },
-                {
-                    text: 'Music',
-                    url: '#'
-                },
-                {
-                    text: 'Literature',
-                    url: '#'
-                },
-                {
-                    text: 'For Your Home',
-                    url: '#'
-                }
-            ]
         },
         aboutLinks: {
             title: 'About',
@@ -127,20 +101,7 @@ FooterDesktop.schema = {
                     }
                 }
             },
-            default: [
-                {
-                    text: 'Our Story',
-                    url: '#'
-                },
-                {
-                    text: 'Press',
-                    url: '#'
-                },
-                {
-                    text: 'Contact Us',
-                    url: '/contact-us'
-                }
-            ]
+        
         },
         helpLinks: {
             title: 'Help',

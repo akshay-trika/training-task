@@ -13,5 +13,14 @@
   },
   "megamenu-mobile":{
     "component" : "MegaMenuMobile"
+  },
+  "contactus-form": {
+    "component": "ContactUsForm"
+  },
+  "contactus-table": {
+    "component": "ContactUsTable"
+  },
+  "contactus-service": {
+    "component": "ContactTableService"
   }
 }
