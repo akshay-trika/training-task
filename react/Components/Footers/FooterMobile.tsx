@@ -58,7 +58,7 @@ const FooterMobile: StorefrontFunctionComponent<FooterProps> = (props: any) => {
                     {ele.items.map((menu: any, index: number) => (
                       <React.Fragment key={index}>
                         <li className="mt2">
-                          <a href={menu.url} className="black-90 no-underline">
+                          <a  href={menu.url ? menu.url : '#'} className="black-90 no-underline">
                             {menu.text}
                           </a>
                         </li>

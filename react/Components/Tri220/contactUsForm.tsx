@@ -18,8 +18,17 @@ const ContactUsForm = () => {
         message: "",
         age: ""
     });
+    const [sitek, setSitekey] = useState('')
     const [save] = useMutation(createDocument)
     const [uploadfle] = useMutation(uploadFile)
+
+
+    useEffect(() => {
+        fetchUserData()
+        fetchCaptcha()
+      }, [])
+
+
     const handleInputChange = (event: any) => {
         const { name, value } = event.target
         setState((prevProps) => ({
@@ -27,14 +36,13 @@ const ContactUsForm = () => {
         }))
     };
 
-    useEffect(() => {
-        fetchUserData()
-      }, [])
+
+   
 
       const fetchUserData = async () => {
         const res = await fetch('/contact')
-        console.log(res,'response')
- 
+        console.log(res);
+        
       }
 
 
@@ -51,7 +59,6 @@ const ContactUsForm = () => {
     }
 
     const handleSubmit = async (event: any) => {
-        console.log(state)
         event.preventDefault();
         const object: any = {
             fields: Object.keys(state).map((key: string) => ({ key, value: state[key as keyof typeof state] }))
@@ -77,18 +84,32 @@ const ContactUsForm = () => {
                     age: ""
                 })
             }
-            console.log(data)
         } catch (err) {
             console.log(err)
         }
     };
+
     const handleRecaptchaChange = (value: any) => {
         if (value) {
-            console.log(value)
-
             setToken(value)
         }
     };
+
+    // useEffect(() => {
+    //     fetchCaptcha()
+    // }, [])
+
+    const fetchCaptcha = async () => {
+        const res = await fetch('/captcha')
+        if (res.ok) {
+            const response = await res.json()
+
+            if(response.sitekey.length){
+                setSitekey(response.sitekey)
+            }
+            
+        }
+    }
 
 
 
@@ -137,13 +158,13 @@ const ContactUsForm = () => {
 
                     <div className="mt3">
                         <label className="db fw4 lh-copy f6" htmlFor="uploadfile">Upload file</label>
-                        <input className="b pa2 input-reset ba bg-transparent w-100 br4" type="file" name="uploadfile" id="uploadfile" value={uploadfile}
+                        <input className="b pa2 input-reset bg-transparent w-100 " type="file" name="uploadfile" id="uploadfile" value={uploadfile}
                             onChange={(e) => { handleFileChange(e) }} />
                     </div>
                     <div className="mt3">
                         {/* Google reCAPTCHA */}
-                        { <ReCAPTCHA onChange={(e) => { handleRecaptchaChange(e) }}
-                            sitekey="6LfP4QIoAAAAACDYiwHgbIn70BNY75emQgtkWfcH"
+                        { sitek.length && <ReCAPTCHA onChange={(e) => { handleRecaptchaChange(e) }}
+                            sitekey={sitek}
                             ref={captchaRef}
                         />}
                     </div>

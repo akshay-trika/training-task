@@ -5,6 +5,7 @@ interface FooterProps {
 }
 
 const FooterDesktop: StorefrontFunctionComponent<FooterProps> = (props: any) => {
+    console.log(props)
     const footerSectionItems = [
         {
             title: "Shop",
@@ -15,31 +16,34 @@ const FooterDesktop: StorefrontFunctionComponent<FooterProps> = (props: any) => 
     ]
 
     return (<div>
-        <div className={`flex justify-between ph7 pt4`}>
-            {
-                footerSectionItems.map(ele => (
-                    <div key={ele.title} >
-                        <b>{ele.title}</b>
-                        <div>
-                            {ele.items.length && ele.items.map((menu: any) => (
-                                <p key={menu.text}>{menu.text}</p>
-                            ))}
+        <div className={`ph7 pt4`}>
+            <ul className='pa0 flex justify-between list'>
+                {
+
+                    footerSectionItems.map((ele,i) => (
+                        <div key={i} >
+                            <b>{ele.title}</b>
+                            <div>
+                                {ele.items.length && ele.items.map((menu: any) => (
+                                    <li><a  className='no-underline' key={menu.text} href={menu.url ? menu.url : '#'}>{menu?.text}</a></li> 
+                                ))}
+                            </div>
                         </div>
-                    </div>
 
-                ))
+                    ))
 
-            }
+                }
+            </ul>
         </div>
         <div className={`flex justify-between ph7 pt3`}>
             <div className="flex flex-column">
                 <p className='b '>Sign up to receive the project antelope newsletter</p>
                 <input type='email' className="ba bw1 b--black-20 bg-white pa2 br-pill outline-0 w-300 placeholder-black fw4 pl1" placeholder='Enter your email address' />
-               <div className="relative">
-               <div className="absolute pt3 top--2 right-1"> <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
-                    <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg>
+                <div className="relative">
+                    <div className="absolute pt3 top--2 right-1"> <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                        <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg>
+                    </div>
                 </div>
-               </div>
             </div>
             <div className="">
                 <p className={`f4 fw6 b flex justify-end`}>Connect with us</p>
@@ -101,7 +105,7 @@ FooterDesktop.schema = {
                     }
                 }
             },
-        
+
         },
         helpLinks: {
             title: 'Help',
