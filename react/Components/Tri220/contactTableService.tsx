@@ -23,7 +23,7 @@ function ContactTableService() {
   return (
     <div>
       <table className='w-100'>
-        <thead className='bg-rebel-pink c-danger--faded pa4 text-white'>
+        <thead className='bg-action-primary c-danger--faded pa4 text-white'>
           <tr>
             <th>ID</th>
             <th>First Name</th>

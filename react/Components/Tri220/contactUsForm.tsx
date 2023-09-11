@@ -26,7 +26,7 @@ const ContactUsForm = () => {
     useEffect(() => {
         fetchUserData()
         fetchCaptcha()
-      }, [])
+    }, [])
 
 
     const handleInputChange = (event: any) => {
@@ -37,13 +37,13 @@ const ContactUsForm = () => {
     };
 
 
-   
 
-      const fetchUserData = async () => {
+
+    const fetchUserData = async () => {
         const res = await fetch('/contact')
         console.log(res);
-        
-      }
+
+    }
 
 
     const handleFileChange = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -104,10 +104,10 @@ const ContactUsForm = () => {
         if (res.ok) {
             const response = await res.json()
 
-            if(response.sitekey.length){
+            if (response.sitekey.length) {
                 setSitekey(response.sitekey)
             }
-            
+
         }
     }
 
@@ -120,50 +120,55 @@ const ContactUsForm = () => {
             <form action="sign-up_submit" className='flex justify-center' onSubmit={handleSubmit}>
                 <fieldset id="sign_up" className="ba-m ma5 mh0 pa4 ph0">
                     <legend className="ph0 mh0 fw6 clip">Sign Up</legend>
-                    <div className="mt3">
-                        <label className="db fw4 lh-copy f6" htmlFor="firstname">First Name</label>
-                        <input className="pa2 input-reset ba bg-transparent w-100 w-100 measure br4" type="text" name="firstname" id="firstname"
-                            value={state.firstname}
-                            onChange={handleInputChange} />
+                    <div className="flex justify-between">
+                        <div className="mt3 mr4">
+                            <label className="db fw4 lh-copy f6" htmlFor="firstname">First Name</label>
+                            <input className="pa2 input-reset ba bg-transparent w-100  measure br4" type="text" name="firstname" id="firstname"
+                                value={state.firstname}
+                                onChange={handleInputChange} />
+                        </div>
+                        <div className="mt3">
+                            <label className="db fw4 lh-copy f6" htmlFor="lastname" >Last Name</label>
+                            <input className="pa2 input-reset ba bg-transparent w-100  measure br4"
+                                value={state.lastname}
+                                onChange={handleInputChange}
+                                type="text" name="lastname" id="lastname" />
+                        </div>
                     </div>
-                    <div className="mt3">
-                        <label className="db fw4 lh-copy f6" htmlFor="lastname" >Last Name</label>
-                        <input className="b pa2 input-reset ba bg-transparent w-100 br4"
-                            value={state.lastname}
-                            onChange={handleInputChange}
-                            type="text" name="lastname" id="lastname" />
+                    <div className="flex justify-between">
+                        <div className="mt3 mr4">
+                            <label className="db fw4 lh-copy f6" htmlFor="age">Age</label>
+                            <input className="pa2 input-reset ba bg-transparent w-100  measure br4" type="text" name="age" id="age"
+                                value={state.age}
+                                onChange={handleInputChange} />
+                        </div>
+                        <div className="mt3">
+                            <label className="db fw4 lh-copy f6" htmlFor="email">Email</label>
+                            <input className="pa2 input-reset ba bg-transparent w-100  measure br4" type="text" name="email" id="email"
+                                value={state.email}
+                                onChange={handleInputChange} />
+                        </div>
                     </div>
-                    <div className="mt3">
-                        <label className="db fw4 lh-copy f6" htmlFor="age">Age</label>
-                        <input className="b pa2 input-reset ba bg-transparent w-100 br4" type="text" name="age" id="age"
-                            value={state.age}
-                            onChange={handleInputChange} />
-                    </div>
-                    <div className="mt3">
-                        <label className="db fw4 lh-copy f6" htmlFor="email">Email</label>
-                        <input className="b pa2 input-reset ba bg-transparent w-100 br4" type="text" name="email" id="email"
-                            value={state.email}
-                            onChange={handleInputChange} />
-                    </div>
-                    <div className="mt3">
-                        <label className="db fw4 lh-copy f6" htmlFor="subject">Subject</label>
-                        <input className="b pa2 input-reset ba bg-transparent w-100 br4" type="text" name="subject" id="subject" value={state.subject}
-                            onChange={handleInputChange} />
-                    </div>
-                    <div className="mt3">
-                        <label className="db fw4 lh-copy f6" htmlFor="message">Message</label>
-                        <input className="b pa2 input-reset ba bg-transparent w-100 br4" type="text" name="message" id="message" value={state.message}
-                            onChange={handleInputChange} />
+                    <div className="flex justify-between">
+                        <div className="mt3 mr4">
+                            <label className="db fw4 lh-copy f6" htmlFor="subject">Subject</label>
+                            <input className="pa2 input-reset ba bg-transparent w-100  measure br4" type="text" name="subject" id="subject" value={state.subject}
+                                onChange={handleInputChange} />
+                        </div>
+                        <div className="mt3">
+                            <label className="db fw4 lh-copy f6" htmlFor="message">Message</label>
+                            <input className="pa2 input-reset ba bg-transparent w-100  measure br4" type="text" name="message" id="message" value={state.message}
+                                onChange={handleInputChange} />
+                        </div>
                     </div>
 
                     <div className="mt3">
                         <label className="db fw4 lh-copy f6" htmlFor="uploadfile">Upload file</label>
-                        <input className="b pa2 input-reset bg-transparent w-100 " type="file" name="uploadfile" id="uploadfile" value={uploadfile}
+                        <input className="pa2 input-reset bg-transparent w-100 " type="file" name="uploadfile" id="uploadfile" value={uploadfile}
                             onChange={(e) => { handleFileChange(e) }} />
                     </div>
                     <div className="mt3">
-                        {/* Google reCAPTCHA */}
-                        { sitek.length && <ReCAPTCHA onChange={(e) => { handleRecaptchaChange(e) }}
+                        {sitek.length && <ReCAPTCHA onChange={(e) => { handleRecaptchaChange(e) }}
                             sitekey={sitek}
                             ref={captchaRef}
                         />}
