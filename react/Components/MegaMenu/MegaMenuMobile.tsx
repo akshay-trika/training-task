@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { FaBars, FaAngleRight } from 'react-icons/fa';
+import { FaBars, FaAngleRight, FaAngleLeft } from 'react-icons/fa';
 
 interface MegaMenuMobileProps { }
 
 const MegaMenuMobile: StorefrontFunctionComponent<MegaMenuMobileProps> = (props: any) => {
     const [show, setShow] = useState(false)
     const [firstMenu, setFirstMenu] = useState<any | undefined>();
-
+    const [firstMenuTrue, setFirstMenuTrue] = useState(false)
     const [firstTitle, setFirstTitle] = useState('')
     const [secondTitle, setSecondTitle] = useState('')
 
@@ -27,21 +27,15 @@ const MegaMenuMobile: StorefrontFunctionComponent<MegaMenuMobileProps> = (props:
     }, [props.megamenu1])
 
 
-
-
-    function handleMenuClick() {
-        setShow(!show)
-    }
-
     const handleFirstMenuClick = (i: number, secondLevel: { displayMenu: string; secondLevelSubmenu: { subMenuTitle: string; href: string; }[]; }[], firstTitle: any) => {
         setFirstTitle(firstTitle)
         if (index === i) {
             setIndex(-1);
-            setSecondMenu(null)
         } else {
             setIndex(i);
             setSecondMenu(secondLevel)
             setSecondMenuTrue(true)
+            setFirstMenuTrue(false)
 
         }
     }
@@ -58,83 +52,102 @@ const MegaMenuMobile: StorefrontFunctionComponent<MegaMenuMobileProps> = (props:
                 setThirdMenuTrue(true)
                 setSecIndex(i);
                 setSecondMenuTrue(false)
-                setFirstMenu(null)
-
             }
 
 
         }
     }
 
-    function goBack() {
-        setSecondMenuTrue(false)
-        handleMenuClick()
-        setFirstTitle('')
-    }
+    function handleMenuClick(str:string) {
+        if(str == "firstLevelOpen"){
+            setShow(true)
+            setSecondMenuTrue(false)
+            setFirstTitle('')
+            setFirstMenuTrue(true)
+        }
 
-    function goBackNested() {
-        setThirdMenuTrue(false)
-        setSecondTitle('')
-        setFirstMenu(props.megamenu1)
-        setFirstTitle('')
+        if(str == "firstLevelClose"){
+            if (thirdMenuTrue) {
+                setThirdMenuTrue(false)
+                setSecondMenuTrue(true)
+                setShow(true)
+                setSecondTitle('')
+            }
+
+            if(secondMenuTrue){
+               setSecondMenuTrue(false)
+               setFirstTitle('')
+               setShow(true)
+               setFirstMenuTrue(true)
+
+            }
+            if( ! thirdMenuTrue &&  !secondMenuTrue){
+                setShow(false)
+                setFirstTitle('')
+            }
+        }
+        
     }
 
 
     return (
-        <div className='pa4 fixed z-5 vw-100'>
-          { !show ?  <a href="javascript:void(0);" onClick={() => { handleMenuClick() }}>
-                <FaBars />
+        <>
 
-            </a> : <></>}
+            <div className="pa4 fixed z-5 vw-100 ">
+                {!show ? <a href="javascript:void(0);" onClick={() => { handleMenuClick("firstLevelOpen") }}>
+                    <FaBars />
 
-            <div className="block pa4 ">
-            
-            {show ?
-                    <article className="bg-white pa3">
-                        {secondMenuTrue ?
-                            <div className="flex justify-end"><button className=' bg-action-primary ml3 f6  white bg-dark-blue' onClick={() => { goBack() }}>
-                                Go Back
-                            </button></div> : firstMenu &&
-                            firstMenu.map((item: any, i: number) => (
-                                <ul className="list br2 pl0" key={i}>
-                                    <li className="ph3 pv3 bb b--light-grey flex justify-between  w-100" onClick={() => handleFirstMenuClick(i, item.secondLevel, item.itemTitle)}>{item.itemTitle}
-                                        <FaAngleRight />
-                                    </li>
-                                </ul>
-                            ))
-                        }
-                        <><div className="b--dark-red underline red">{firstTitle}</div></>
-                        {
-                            !secondMenuTrue ? <></>
-                                :
-                                secondMenu && secondMenu.map((item: any, i: any) => (
-                                    <><ul className="list br2 pl0 ma0" key={i + 'second'}>
-                                        <li className="ph3 pv3 bb b--light-grey flex justify-between  w-100" onClick={() => handleSecondMenuClick(i, item.secondLevelSubmenu, item.displayMenu)}>{item.displayMenu}
+                </a> :<></>}
+            </div>
+
+            <div className='pa4 fixed z-5 vw-100 left--2 top--2'>
+                <div className="block pa4 ">
+
+                    {show ?
+                        <article className="bg-white pa4">
+                            <div className="flex">
+                            <p><FaAngleLeft /></p> 
+                            <p onClick={() => { handleMenuClick("firstLevelClose") }}>Go Back</p>
+                            </div>
+                            { firstMenuTrue &&
+                                firstMenu.map((item: any, i: number) => (
+                                    <ul className="list br2 pl0" key={i}>
+                                        <li className="ph3 pv3 bb b--light-grey flex justify-between  w-100" onClick={() => handleFirstMenuClick(i, item.secondLevel, item.itemTitle)}>{item.itemTitle}
+                                            <FaAngleRight />
                                         </li>
-                                    </ul></>
+                                    </ul>
                                 ))
-                        }
-                        {thirdMenuTrue ? <div className="flex justify-between"><div className="justify-start underline  pa3 red">{secondTitle}  </div> <div className="justify-end ">
-                            <button className='flex justify-start bg-action-primary ml3 f6 ph3 pv2   white bg-dark-blue' onClick={() => { goBackNested() }}>
-                                Go Back
-                            </button>
-                        </div></div> : <></>}
-
-                        {
-                            thirdMenuTrue ?
-                                thirdMenu && thirdMenu.map((item: any,i:any) => (
-                                    <>
-                                        <ul className="list br2 pl0 ma0" key={i + 'third'}>
-                                            <li className="ph3 pv3 bb b--light-grey flex justify-between  w-100">{item.subMenuTitle}
+                            } 
+                            {firstTitle ? <><div className="b--dark-red underline red pl3">{firstTitle}</div></> : <></>}
+                            {secondTitle ? <><div className="b--dark-red underline red pl3">{secondTitle}</div></> : <></>}
+                            {
+                                !secondMenuTrue ? <></>
+                                    :
+                                    secondMenu && secondMenu.map((item: any, i: any) => (
+                                        <><ul className="list br2 pl0 ma0" key={i + 'second'}>
+                                            <li className="ph3 pv3 bb b--light-grey flex justify-between  w-100" onClick={() => handleSecondMenuClick(i, item.secondLevelSubmenu, item.displayMenu)}>{item.displayMenu}
                                             </li>
                                         </ul></>
-                                )) : <></>
-                        }
-                    </article> : <></>
-                }
-            </div>
+                                    ))
+                            }
+                            {
+                                thirdMenuTrue ?
+                                    thirdMenu && thirdMenu.map((item: any, i: any) => (
+                                        <>
+                                            <ul className="list br2 pl0 ma0" key={i + 'third'}>
+                                                <li className="ph3 pv3 bb b--light-grey flex justify-between  w-100">{item.subMenuTitle}
+                                                </li>
+                                            </ul></>
+                                    )) : <></>
+                            }
+                        </article> : <></>
+                    }
+                </div>
 
             </div>
+
+        </>
+
     )
 
 
