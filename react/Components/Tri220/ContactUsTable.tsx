@@ -18,31 +18,40 @@ const ContactUsTable = () => {
       ],
       schema: 'akshay',
       page: pageno,
-      pageSize: 2
+      pageSize: 5
     },
     notifyOnNetworkStatusChange: true,
     ssr: false,
   })
+
   useEffect(() => {
-    if (pageTrue) {
-      getContact();
-      setPageTrue(false);
-    } else {
-      getContact();
-    }
-  }, [pageTrue]);
+    getContact();
+  }, [pageno,pageTrue]);
 
   useEffect(() => {
     if (data) {
-      console.log(data, 'akshay')
-      setContactData((prevState: any) => {
-        return [...prevState, ...data.documents]
-      });
+      // setContactData((prevState: any) => {
+      //   return [...prevState, ...data.documents]
+      // });
+      setContactData(data.documents);
     }
     if (error) {
       setErr('There is an error');
     }
   }, [data, error]);
+
+  const handleSeeMore = () => {
+    setPageNo(pageno + 1);
+    setPageTrue(true);
+  };
+
+  const handleSeeLess = () => {
+    if (pageno > 1) {
+      setContactData([]);
+      setPageNo(pageno - 1);
+      setPageTrue(true);
+    }
+  };
 
 
 
@@ -65,7 +74,7 @@ const ContactUsTable = () => {
 
             contactData ? contactData.map((item: any, index: any) => (
               <tr key={index} className='bg-black-60 c-on-base--inverted text-white'>
-                <td className='tc'>{index}</td>
+                <td className='tc'>{index + 1}</td>
                 <td className='tc'>{item.fields.find((field: any) => field.key === "firstname").value}</td>
                 <td className='tc'>{item.fields.find((field: any) => field.key === "lastname").value}</td>
                 <td className='tc'>{item.fields.find((field: any) => field.key === "subject").value}</td>
@@ -80,10 +89,10 @@ const ContactUsTable = () => {
 
 
       <div className="flex justify-center">
-        <button type="button" className='b--black-0125 bg-muted-2 br4 pa3 white mr3' onClick={() => { setPageNo(pageno + 1); setPageTrue(true) }}>
+        <button type="button" className='b--black-0125 bg-muted-2 br4 pa3 white mr3' onClick={handleSeeMore}>
           See More
         </button>
-        <button type="button" className='b--white-025 ba bg-red br4 pa3 white' onClick={() => { setPageNo(pageno - 1); setPageTrue(true) }}>
+        <button type="button" className='b--white-025 ba bg-red br4 pa3 white' onClick={handleSeeLess}>
           See Less
         </button>
       </div>
