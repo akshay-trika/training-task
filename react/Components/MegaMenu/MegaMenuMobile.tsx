@@ -107,25 +107,25 @@ const MegaMenuMobile: StorefrontFunctionComponent<MegaMenuMobileProps> = (props:
                         <article className="bg-white pa4">
                             <div className="flex">
                             <p><FaAngleLeft /></p> 
-                            <p onClick={() => { handleMenuClick("firstLevelClose") }}>Go Back</p>
+                            <p className="pointer" onClick={() => { handleMenuClick("firstLevelClose") }}>Go Back</p>
                             </div>
                             { firstMenuTrue &&
                                 firstMenu.map((item: any, i: number) => (
                                     <ul className="list br2 pl0" key={i}>
-                                        <li className="ph3 pv3 bb b--light-grey flex justify-between  w-100" onClick={() => handleFirstMenuClick(i, item.secondLevel, item.itemTitle)}>{item.itemTitle}
+                                        <li className="ph3 pv3 bb b--light-grey flex justify-between  w-100 pointer" onClick={() => handleFirstMenuClick(i, item.secondLevel, item.itemTitle)}>{item.itemTitle}
                                             <FaAngleRight />
                                         </li>
                                     </ul>
                                 ))
                             } 
                             {firstTitle ? <><div className="b--dark-red underline red pl3">{firstTitle}</div></> : <></>}
-                            {secondTitle ? <><div className="b--dark-red underline red pl3">{secondTitle}</div></> : <></>}
+                            {secondTitle ? <><div className="b--dark-red underline red pl5">{secondTitle}</div></> : <></>}
                             {
                                 !secondMenuTrue ? <></>
                                     :
                                     secondMenu && secondMenu.map((item: any, i: any) => (
                                         <><ul className="list br2 pl0 ma0" key={i + 'second'}>
-                                            <li className="ph3 pv3 bb b--light-grey flex justify-between  w-100" onClick={() => handleSecondMenuClick(i, item.secondLevelSubmenu, item.displayMenu)}>{item.displayMenu}
+                                            <li className="ph3 pv3 bb b--light-grey flex justify-between  w-100 pointer" onClick={() => handleSecondMenuClick(i, item.secondLevelSubmenu, item.displayMenu)}>{item.displayMenu}
                                             </li>
                                         </ul></>
                                     ))
@@ -135,7 +135,7 @@ const MegaMenuMobile: StorefrontFunctionComponent<MegaMenuMobileProps> = (props:
                                     thirdMenu && thirdMenu.map((item: any, i: any) => (
                                         <>
                                             <ul className="list br2 pl0 ma0" key={i + 'third'}>
-                                                <li className="ph3 pv3 bb b--light-grey flex justify-between  w-100">{item.subMenuTitle}
+                                                <li className="ph3 pv3 bb b--light-grey flex justify-between  w-100 pointer">{item.subMenuTitle}
                                                 </li>
                                             </ul></>
                                     )) : <></>

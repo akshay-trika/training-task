@@ -50,8 +50,8 @@ const MegaMenuDesktop: StorefrontFunctionComponent<MegaMenuDesktopProps> = (prop
                     <div className='w-100 flex absolute bg-base z-1   c--action-danger c-on-muted-1  h-auto mt6 pa4 top-2'>
                         <div className="w-25 ">
                             {secondMenu.map((submenu: { displayMenu: string | number | boolean | {} | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactNodeArray | React.ReactPortal | null | undefined; secondLevelSubmenu: any[]; }) => (
-                                <div className={` ${styles.submenu_item} c-on-muted-3 f3 flex hover-c-danger justify-between pa2`} onClick={() => setThirdlevelMenu(submenu.secondLevelSubmenu)} >
-                                    <p className='ma0'>{submenu.displayMenu}</p>
+                                <div className={` ${styles.submenu_item} c-on-muted-3 f3 flex hover-c-danger justify-between pa2  pointer`} onClick={() => setThirdlevelMenu(submenu.secondLevelSubmenu)} >
+                                    <p className='ma0 pointer'>{submenu.displayMenu}</p>
                                     <FaAngleRight />
                                 </div>
 
@@ -63,7 +63,7 @@ const MegaMenuDesktop: StorefrontFunctionComponent<MegaMenuDesktopProps> = (prop
                                 {thirdlevelMenu.map((secondSubmenu: { subMenuTitle: boolean | React.ReactPortal | React.ReactChild | React.ReactFragment | null | undefined; }) => (
                                     <div className="w-33 pa2 box-border">
                                         <div className={`bg-light pa3 mb2 c-on-base  ma0 mb2`}>
-                                            <p className='ma0'>
+                                            <p className='ma0 pointer'>
                                                 {secondSubmenu.subMenuTitle}
                                             </p>
                                         </div>

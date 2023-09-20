@@ -5,7 +5,7 @@ import documents from '../../graphql/getContactUstable.graphql'
 const ContactUsTable = () => {
   const [contactData, setContactData] = useState<any>([]);
   const [pageTrue, setPageTrue] = useState(false);
-  const [pageno, setPageNo] = useState(1);
+  const [pageno, setPageNo] = useState(5);
   const [err, setErr] = useState<any>(null);
   const [getContact, { data, error }] = useLazyQuery(documents, {
     variables: {
@@ -17,8 +17,8 @@ const ContactUsTable = () => {
         'age',
       ],
       schema: 'akshay',
-      page: pageno,
-      pageSize: 5
+      page: 1,
+      pageSize: pageno
     },
     notifyOnNetworkStatusChange: true,
     ssr: false,
@@ -41,14 +41,14 @@ const ContactUsTable = () => {
   }, [data, error]);
 
   const handleSeeMore = () => {
-    setPageNo(pageno + 1);
+    setPageNo(pageno + 5);
     setPageTrue(true);
   };
 
   const handleSeeLess = () => {
     if (pageno > 1) {
       setContactData([]);
-      setPageNo(pageno - 1);
+      setPageNo(pageno - 5);
       setPageTrue(true);
     }
   };
