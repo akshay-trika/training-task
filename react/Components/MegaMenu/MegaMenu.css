@@ -1,0 +1,27 @@
+.submenu_item {
+    position: relative; 
+    padding: 8px; 
+}
+
+.submenu_item::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    background-color: #ccc; 
+}
+.submenu_item.bb::after {
+    display: none; 
+}
+
+.submenu_item.bb {
+    border-bottom: 1px solid #ccc; 
+}
+
+
+
+
+
+
