@@ -23,13 +23,13 @@
     "vtex.file-manager-graphql": "0.x"
   },
   "settingsSchema": {
-    "title": "Akshay",
+    "title": "Recaptcha Secret Key",
     "type": "object",
     "access": "public",
     "properties": {
       "recaptchaKey": {
         "title": "captcha",
-        "description": "Enter the recapthhakey for  token from user & rules",
+        "description": "Enter the recapth akey for  token from user & rules",
         "type": "string"
       }
     }
